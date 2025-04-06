@@ -34,16 +34,16 @@ const HeroSection = () => {
         },
       });
     };
-  }, []);
+  }, [currentIndex, onPlayerStateChange]);
 
-  const onPlayerStateChange = (event) => {
+  const onPlayerStateChange = React.useCallback((event) => {
     // 0 means video ended
     if (event.data === window.YT.PlayerState.ENDED) {
       const nextIndex = (currentIndex + 1) % videos.length;
       setCurrentIndex(nextIndex);
       playerRef.current.loadVideoById(videos[nextIndex].id);
     }
-  };
+  }, [currentIndex]);
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center text-center text-white overflow-hidden">
