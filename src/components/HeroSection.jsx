@@ -1,73 +1,78 @@
-import React, { useState, useRef, useEffect } from "react";
-import { gsap } from "gsap";
+import React, { useState } from "react";
+import {AnimatePresence } from "framer-motion";
 
 const videos = [
+  {
+    src: "/iphone.mp4",
+    title: "iPhone 16 Pro",
+    desc: "Pro. Beyond. Created to change everything for the better.",
+    bg: "bg-white/10 backdrop-blur-md text-white",
+  },
   {
     src: "/iPad.mp4",
     title: "iPad 2024",
     desc: "Welcome to the era of creativity. Explore what’s next.",
+    bg: "bg-blue-100/30 text-black backdrop-blur-md",
+  },
+  {
+    src: "/Watch.mp4",
+    title: "Apple Watch",
+    desc: "Your health. Your fitness. Right on your wrist.",
+    bg: "bg-black/60 text-white backdrop-blur-md",
   },
   {
     src: "/Mac.mp4",
     title: "MacBook Pro",
     desc: "Supercharged for pros. Faster than ever.",
+    bg: "bg-gray-800/70 text-white backdrop-blur-md",
   },
   {
     src: "/Airpods.mp4",
     title: "AirPods Pro",
-    desc: "Immersive sound. Magical experience. Next-level audio.",
+    desc: "Immersive sound. Adaptive Transparency. Magical experience.",
+    bg: "bg-white/70 text-black backdrop-blur-md",
   },
 ];
 
 const HeroSection = () => {
-  const [index, setIndex] = useState(0);
-  const videoRef = useRef(null);
-  const textRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleVideoEnd = () => {
-    gsap.to(textRef.current, { opacity: 0, duration: 0.6, onComplete: () => {
-      setIndex((prev) => (prev + 1) % videos.length);
-    }});
+    setCurrentIndex((prev) => (prev + 1) % videos.length);
   };
 
-  useEffect(() => {
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.2 }
-    );
-  }, [index]);
+  const currentVideo = videos[currentIndex];
 
   return (
     <section className="relative w-full h-screen overflow-hidden text-white flex items-center justify-center">
       {/* Background Video */}
       <video
-        key={videos[index].src}
-        ref={videoRef}
+        key={currentVideo.src}
         autoPlay
         muted
-        playsInline
         onEnded={handleVideoEnd}
-        className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500"
+        className="absolute inset-0 w-full h-full object-cover z-10"
       >
-        <source src={videos[index].src} type="video/mp4" />
-        Your browser does not support the video tag.
+        <source src={currentVideo.src} type="video/mp4" />
       </video>
 
-      {/* Dark Overlay */}
-      {/* <div className="absolute inset-0 bg-black bg-opacity-30 z-20"></div> */}
-
-      {/* Text Content */}
-      <div
-        ref={textRef}
-        className="relative z-30 text-center px-6 max-w-3xl"
-      >
-        <h1 className="text-4xl md:text-6xl font-bold drop-shadow-md">{videos[index].title}</h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-200">{videos[index].desc}</p>
-        <button className="mt-6 px-8 py-3 border-2 border-white text-white text-lg rounded hover:bg-white hover:text-black transition duration-300">
-          Explore Now
-        </button>
-      </div>
+      {/* Content Overlay */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className={`relative z-20 px-6 py-8 rounded-xl text-center shadow-xl max-w-2xl ${currentVideo.bg}`}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold">{currentVideo.title}</h1>
+          <p className="mt-4 text-lg md:text-xl">{currentVideo.desc}</p>
+          <button className="mt-6 px-6 py-3 border-2 border-current rounded hover:bg-white hover:text-black transition duration-300">
+            Explore
+          </button>
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 };
