@@ -9,18 +9,18 @@ const HeroSection = () => {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-10"
       >
-        <source src="/ipad.mp4" type="video/mp4" />
+        <source src="/iPad.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
+      {/* <div className="absolute inset-0 bg-black bg-opacity-40 z-0" /> */}
 
       {/* Content */}
       <div className="relative z-20 text-center px-6">
-        <h1 className="text-4xl md:text-6xl font-bold">ishayanPad 2024</h1>
+        <h1 className="text-4xl md:text-6xl font-bold">iPad 2024</h1>
         <p className="mt-4 text-lg md:text-xl">
           Welcome to the era of creativity. Explore what’s next.
         </p>
