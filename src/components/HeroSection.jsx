@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const videos = [
   {
-    src: "/iPhone.mp4",
+    src: "/iphone.mp4",
     title: "iPhone 16 Pro",
     desc: "Pro. Beyond. Created to change everything for the better. For everyone.",
   },
@@ -32,18 +32,19 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleVideoEnd = () => {
-    setCurrentIndex((prev) => (prev + 1) % videos.length); // Loop to next video
+    setCurrentIndex((prev) => (prev + 1) % videos.length);
   };
 
   const currentVideo = videos[currentIndex];
 
   return (
-    <section className="relative w-full h-screen overflow-hidden text-white flex items-center justify-center">
+    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center text-white">
       {/* Background Video */}
       <video
         key={currentVideo.src}
         autoPlay
         muted
+        loop
         playsInline
         onEnded={handleVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-10"
@@ -52,12 +53,15 @@ const HeroSection = () => {
         Your browser does not support the video tag.
       </video>
 
-     
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-40 z-20" />
 
       {/* Content */}
       <div className="relative z-30 text-center px-6">
-        <h1 className="text-4xl md:text-6xl font-extrabold drop-shadow-md">{currentVideo.title}</h1>
-        <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-white drop-shadow-md bg-transparent">
+        <h1 className="text-5xl md:text-7xl font-extrabold drop-shadow-lg">
+          {currentVideo.title}
+        </h1>
+        <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto text-gray-300 drop-shadow-md">
           {currentVideo.desc}
         </p>
         <button className="mt-6 px-8 py-3 border-2 border-white text-white rounded-md hover:bg-white hover:text-black transition duration-300">
