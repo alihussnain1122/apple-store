@@ -28,6 +28,7 @@ const HeroSection = () => {
           Explore iPad
         </button>
       </div>
+      <h1>Shayan is checking</h1>
     </section>
   );
 };
