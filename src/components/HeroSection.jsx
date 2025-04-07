@@ -20,7 +20,7 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center px-6">
-        <h1 className="text-4xl md:text-6xl font-bold">iPad 2024</h1>
+        <h1 className="text-4xl md:text-6xl font-bold">ishayanPad 2024</h1>
         <p className="mt-4 text-lg md:text-xl">
           Welcome to the era of creativity. Explore what’s next.
         </p>
@@ -28,7 +28,7 @@ const HeroSection = () => {
           Explore iPad
         </button>
       </div>
-      <h1>Shayan is checking</h1>
+      <h1 className="text-white">Shayan is checking</h1>
     </section>
   );
 };
