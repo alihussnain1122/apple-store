@@ -1,67 +1,49 @@
-import React, { useState } from "react";
-
-const videos = [
-  {
-    src: "/iphone.mp4",
-    title: "iPhone 16 Pro",
-    desc: "Pro. Beyond. Created to change everything for the better.",
-  },
-  {
-    src: "/Mac.mp4",
-    title: "MacBook Pro",
-    desc: "Supercharged for pros. Faster than ever.",
-  },
-  {
-    src: "/Airpods.mp4",
-    title: "AirPods Pro",
-    desc: "Immersive sound. Adaptive Transparency. Magical experience.",
-  },
-  {
-    src: "/iPad.mp4", // ✅ New iPad video file
-    title: "iPad Pro",
-    desc: "Thin, powerful, and redesigned. Your new creative companion.",
-  },
-  {
-    src: "/Watch.mp4",
-    title: "Apple Watch",
-    desc: "Your health. Your fitness. Right on your wrist.",
-  },
-];
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const contentRef = useRef(null);
 
-  const handleVideoEnd = () => {
-    setCurrentIndex((prev) => (prev + 1) % videos.length);
-  };
+  useEffect(() => {
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+    );
+  }, []);
 
   return (
-    <section className="relative w-full h-screen flex items-center justify-center text-center text-white overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full rounded-lg overflow-hidden border-2 border-gray-800 border-opacity-50">
-        <video
-          key={videos[currentIndex].src}
-          autoPlay
-          muted
-          onEnded={handleVideoEnd}
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={videos[currentIndex].src} type="video/mp4" />
-        </video>
-      </div>
+    <section className="relative w-full h-screen overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      >
+        <source src="/Mac.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-      {/* Overlay */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
-      {/* Text Content */}
-      <div className="relative z-10 max-w-3xl px-5">
-        <h4 className="text-gray-300 text-lg md:text-xl font-medium">
-          {videos[currentIndex].desc}
-        </h4>
+      {/* Centered content */}
+      <div
+        ref={contentRef}
+        className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6"
+      >
+        <h2 className="text-lg md:text-xl text-gray-300 mb-2">
+          Supercharged for pros.
+        </h2>
         <h1 className="text-4xl md:text-6xl font-bold tracking-wide">
-          {videos[currentIndex].title}
+          MacBook Pro M2
         </h1>
-        <button className="mt-6 px-8 py-3 border-2 border-gray-400 text-white text-lg rounded-md hover:bg-opacity-10 hover:border-white transition duration-300 cursor-pointer">
+        <p className="text-md md:text-lg text-gray-200 mt-4 max-w-xl">
+          Faster than ever. Built for everything you love.
+        </p>
+        <button className="mt-8 px-6 py-3 border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300">
           Shop Now
         </button>
       </div>
