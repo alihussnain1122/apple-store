@@ -53,7 +53,7 @@ const HeroSection = () => {
       </video>
 
       {/* Transparent overlay for better readability */}
-      {/* <div className="absolute inset-0 bg-black bg-opacity-30 z-20" /> */}
+      { <div className="absolute inset-0 bg-black bg-opacity-30 z-0" /> }
 
       {/* Content */}
       <div className="relative z-30 text-center px-6">
