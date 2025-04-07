@@ -22,7 +22,10 @@ const HeroSection = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
-        <source src="/Mac.mp4" type="video/mp4" />
+        <source
+          src="https://www.apple.com/105/media/us/ipad/2024/45762adb-901a-4726-8b0c-1f3ee092b09a/anim/welcome-hero/xlarge.mp4#t=0"
+          type="video/mp4"
+        />
         Your browser does not support the video tag.
       </video>
 
@@ -35,13 +38,13 @@ const HeroSection = () => {
         className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6"
       >
         <h2 className="text-lg md:text-xl text-gray-300 mb-2">
-          Supercharged for pros.
+          Say hello to the new iPad.
         </h2>
         <h1 className="text-4xl md:text-6xl font-bold tracking-wide">
-          MacBook Pro M2
+          iPad 2024
         </h1>
         <p className="text-md md:text-lg text-gray-200 mt-4 max-w-xl">
-          Faster than ever. Built for everything you love.
+          A powerful way to work, play, and create — now more intuitive than ever.
         </p>
         <button className="mt-8 px-6 py-3 border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300">
           Shop Now
