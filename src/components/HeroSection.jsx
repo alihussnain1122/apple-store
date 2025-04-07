@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const videos = [
   {
-    src: "/iphone.mp4",
+    src: "/iPhone.mp4",
     title: "iPhone 16 Pro",
     desc: "Pro. Beyond. Created to change everything for the better. For everyone.",
   },
