@@ -54,7 +54,7 @@ const HeroSection = () => {
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 z-20" />
+      {/* <div className="absolute inset-0 bg-black bg-opacity-40 z-20" /> */}
 
       {/* Content */}
       <div className="relative z-30 text-center px-6">
