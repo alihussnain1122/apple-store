@@ -38,7 +38,7 @@ const HeroSection = () => {
   const currentVideo = videos[currentIndex];
 
   return (
-    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center text-transparent">
+    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center text-transparent text-border-2 border-black">
       {/* Background Video */}
       <video
         key={currentVideo.src}
