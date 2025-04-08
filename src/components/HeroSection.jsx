@@ -44,7 +44,6 @@ const HeroSection = () => {
         key={currentVideo.src}
         autoPlay
         muted
-        loop
         playsInline
         onEnded={handleVideoEnd}
         className="absolute inset-0 w-full h-full object-cover z-10"
