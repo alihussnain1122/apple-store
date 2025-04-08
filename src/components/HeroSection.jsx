@@ -22,7 +22,7 @@ const videos = [
     desc: "Supercharged for pros. Faster than ever.",
   },
   {
-    src: "/Airpods.mp4",
+    src: "/AirPods.mp4",
     title: "AirPods Pro",
     desc: "Immersive sound. Adaptive Transparency. Magical experience.",
   },
