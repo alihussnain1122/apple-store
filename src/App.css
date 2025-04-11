@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+.stroke-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px white;
+    text-shadow: 1.5px white;
+    letter-spacing: 2px;
+  }
+  
+  

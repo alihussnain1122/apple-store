@@ -2,14 +2,15 @@ import React from 'react';
 
 export default function BigSummerSale() {
   return (
-    <div className="relative bg-gradient-to-r from-gray-900 to-black text-white p-10 flex flex-col justify-center items-center h-[400px] overflow-hidden text-center">
+    <div className="relative w-full bg-gradient-to-r from-gray-900 to-black text-white px-4 py-16 sm:px-10 sm:py-20 flex flex-col justify-center items-center overflow-hidden text-center">
       
-      {/* 3D Futuristic SVG with Curved Neon Streaks */}
+      {/* Futuristic Neon SVG Lines */}
       <svg
         className="absolute top-0 left-0 w-full h-full opacity-30"
         viewBox="0 0 800 400"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
       >
         <path
           d="M50 100 Q200 50, 400 100 T750 100"
@@ -38,23 +39,23 @@ export default function BigSummerSale() {
       </svg>
       
       {/* Heading */}
-      <h2 className="text-6xl font-extralight relative">
+      <h2 className="text-3xl sm:text-5xl md:text-6xl font-extralight relative leading-tight">
         Big Summer <span className="font-bold">Sale</span>
       </h2>
 
       {/* Tagline */}
-      <p className="text-gray-300 mt-2 text-lg relative">
+      <p className="text-gray-300 mt-3 text-base sm:text-lg relative max-w-xl">
         Hot Deals, Cool Prices on Apple Products!
       </p>
 
-      {/* Call-to-Action Button */}
-      <button className="mt-6 px-6 py-2 border border-white rounded-md text-white hover:bg-white hover:text-black transition relative">
+      {/* CTA Button */}
+      <button className="mt-6 px-6 py-2 border border-white rounded-md text-white hover:bg-white hover:text-black transition relative text-sm sm:text-base">
         Shop Now
       </button>
 
-      {/* Floating 3D Gradient Accents */}
-      <div className="absolute bottom-[-40px] right-[-50px] w-36 h-36 bg-blue-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute top-[-30px] left-[-50px] w-28 h-28 bg-purple-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
+      {/* Gradient Floating Accents */}
+      <div className="absolute bottom-[-40px] right-[-50px] w-28 h-28 sm:w-36 sm:h-36 bg-blue-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute top-[-30px] left-[-50px] w-24 h-24 sm:w-28 sm:h-28 bg-purple-500 opacity-30 rounded-full blur-3xl animate-pulse"></div>
     </div>
   );
 }

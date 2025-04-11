@@ -125,20 +125,66 @@ const allProducts = {
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState("Apple Mobiles");
   const [sortOption, setSortOption] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const products = allProducts[selectedCategory] || [];
   const sortedProducts = [...products].sort((a, b) => {
     if (sortOption === "Price: Low to High") return a.price - b.price;
     if (sortOption === "Price: High to Low") return b.price - a.price;
-    return 0; // Default: No sorting
+    return 0;
   });
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="flex gap-6">
-        {/* Category Sidebar */}
-        <aside className="w-1/4 bg-white shadow-lg p-4 rounded-lg">
+    <div className="p-4 sm:p-6 bg-gray-100 min-h-screen">
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden mb-4 flex justify-between items-center">
+        <h2 className="text-xl font-semibold">{selectedCategory}</h2>
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="p-2 bg-black text-white rounded-lg"
+        >
+          {mobileMenuOpen ? 'Close Menu' : 'Categories'}
+        </button>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+        {/* Category Sidebar - Mobile Overlay */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50">
+            <div className="bg-white w-3/4 h-full p-4 overflow-y-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">Categories</h2>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-2xl"
+                >
+                  &times;
+                </button>
+              </div>
+              <ul className="space-y-2">
+                {categories.map((category) => (
+                  <li
+                    key={category}
+                    className={`p-2 cursor-pointer rounded-lg transition ${
+                      selectedCategory === category ? "bg-black text-white" : "hover:bg-gray-200"
+                    }`}
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Category Sidebar - Desktop */}
+        <aside className="hidden lg:block w-full lg:w-1/4 bg-white shadow-lg p-4 rounded-lg">
           <h2 className="text-xl font-semibold mb-4">Category</h2>
-          <ul>
+          <ul className="space-y-2">
             {categories.map((category) => (
               <li
                 key={category}
@@ -154,27 +200,36 @@ export default function Products() {
         </aside>
 
         {/* Products Grid */}
-        <div className="w-3/4">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">{selectedCategory}</h2>
+        <div className="w-full lg:w-3/4">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-3">
+            <h2 className="text-xl sm:text-2xl font-semibold">{selectedCategory}</h2>
             <select
-              className="p-2 border rounded-lg"
+              className="p-2 border rounded-lg w-full sm:w-auto"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >
-              <option value="">Default</option>
+              <option value="">Default Sorting</option>
               <option value="Price: Low to High">Price: Low to High</option>
               <option value="Price: High to Low">Price: High to Low</option>
             </select>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {sortedProducts.map((product) => (
-              <div key={product.id} className="bg-white p-4 rounded-lg shadow-lg relative">
-                <img src={product.image} alt={product.name} className="w-full h-40 object-contain mb-4" />
-                <h3 className="text-lg font-semibold">{product.name}</h3>
-                <p className="text-xl font-bold text-gray-800">${product.price}</p>
-                <button className="w-full bg-black text-white p-2 rounded-lg mt-3 hover:bg-gray-800">
+              <div 
+                key={product.id} 
+                className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="h-40 flex items-center justify-center mb-4">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="max-h-full max-w-full object-contain" 
+                  />
+                </div>
+                <h3 className="text-md sm:text-lg font-semibold line-clamp-2 h-14">{product.name}</h3>
+                <p className="text-lg font-bold text-gray-800 mt-2">${product.price.toLocaleString()}</p>
+                <button className="w-full bg-black text-white p-2 rounded-lg mt-3 hover:bg-gray-800 transition">
                   Buy Now
                 </button>
               </div>
